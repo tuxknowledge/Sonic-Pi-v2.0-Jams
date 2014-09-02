@@ -1,1 +1,32 @@
-#
+3.times do
+  play 52
+  play 55
+  play 59
+  sleep 1
+  play 60
+  play 50
+  play 40
+  sleep 1
+  play 52
+  play 55
+  play 59
+  sleep 1
+  play 60
+  play 50
+  play 40
+  sleep 1
+  play 52
+  play 55
+  play 59
+  play 52
+  sleep 0.5
+  play 55
+  sleep 0.5
+  play 59
+  play 52
+  sleep 0.5
+  play 55
+  sleep 0.5
+  play 52
+  sleep 1
+end
