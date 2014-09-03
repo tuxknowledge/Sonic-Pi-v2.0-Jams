@@ -1,0 +1,64 @@
+
+define :bass do
+  sync :tick
+  with_fx :wobble do
+    sample :ambi_haunted_hum, amp: 0.5
+  end
+  #use_synth :prophet
+  #play chord(:e2, :m7).choose, release: 0.6
+  sleep 0.5
+end
+
+define :highhats do
+  sync :tick
+  sample :drum_cymbal_open, attack: 0.01, sustain: 0, release: rrand(0.01, 0.1), amp: 0.6
+  sleep 0.25
+  sample :drum_cymbal_open, attack: 0.01, sustain: 0.3, release: 0.1, amp: 0.5
+  sleep 0.25
+end
+
+define :perc1 do
+  sync :tick
+  sample :elec_snare
+  sleep 1
+end
+
+define :perc2 do
+  sync :tick
+  sample :drum_heavy_kick
+  with_fx :wobble do
+    2.times do
+      sample :elec_blip2, rate: rrand(2,4), amp: 2
+      sleep 0.25
+    end
+  end
+end
+
+define :amen1 do
+  sync :tick
+  sample :loop_amen, attack: 0.01, sustain: 0.1, release: 0.1
+  sleep 1
+end
+
+define :drum do
+  sync :tick
+  sample :drum_bass_hard#, attack: 0.01, sustain: 0.1, release: 0.1, amp: 8
+  with_fx :distortion do
+    sample :drum_heavy_kick, attack: 0.1, sustain: 0.1, release: 0.1, amp: 4
+  end
+  sleep 0.5
+end
+
+define :metro do
+  cue :tick
+  sleep 0.5
+end
+
+
+in_thread(name: :drum){loop{drum}}
+in_thread(name: :metro){loop{metro}}
+in_thread(name: :bass){loop{bass}}
+in_thread(name: :perc1){loop{perc1}}
+in_thread(name: :perc2){loop{perc2}}
+in_thread(name: :amen1){loop{amen1}}
+in_thread(name: :highhats){loop{highhats}}
